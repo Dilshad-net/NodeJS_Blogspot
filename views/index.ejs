@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Blog Post</h2>
+        <a href="articles/new" class="btn btn-success "><b> Create New Articles </b></a> <!--path through js (control+server. js)-->
+        <% base.forEach( base => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="card-title mb-2">
+                        <h3><%= base.title %></h3>
+                    </div>
+                    <div class="card-subtitle mb-2">
+                        <%= base.createdDate.toLocaleDateString() %>
+                    </div>
+                    <div class="card-text mb-3">
+                        <h4 class=""><%= base.description %></h4>
+                    </div>
+                    <div class="mt-1">
+                        <!--%= base.markdown %-->
+                        <a href="/articles/<%= base.slugify %>" class="btn btn-info"><i>Read More</i></a>
+                        <form action="/articles/<%= base.id %>?_mthd=DELETE" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger"><b><i>Delete</i></b></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
